@@ -7,6 +7,10 @@ class Transport
 {
    public $cart;
 
+    public function canCartBeTransportedWithCarrier(){
+      return false;
+   }
+
    public function isCartEmpty(){
       return empty($this->cart);
    }
