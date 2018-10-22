@@ -7,8 +7,22 @@ class Transport
 {
    public $cart;
 
-    public function canCartBeTransportedWithCarrier(){
-      return false;
+   public function canCartBeTransportedWithCarrier(){
+
+
+      if($this->isCartEmpty()){
+         return false;
+      }
+
+      if(!$this->isCartValidJSON()){
+         return false;
+      }
+      if($this->islivingPlantInCart()){
+         return false;
+      }
+
+
+      return true;
    }
 
    public function isCartEmpty(){
