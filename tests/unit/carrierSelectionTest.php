@@ -51,5 +51,24 @@ final class carrierSelectionTest extends TestCase
       $this->assertEquals($this->transport->cart,json_decode($test_data));
    }
 
+   public function testLivingPlantInCart (): void
+   {
+
+      $this->transport->cart = '[{
+                             "id": 1,
+                             "name": "A green door",
+                             "price": 12.5,
+                             "tags":"living plant"
+                          },
+                          {
+                                "id": 1,
+                                "name": "A green door",
+                                "price": 12.5,
+                                "tags":"living plant"
+                           }]';
+
+      $this->assertTrue($this->transport->islivingPlantInCart());
+   }
+
 }
 
