@@ -88,6 +88,27 @@ final class carrierSelectionTest extends TestCase
 
       $this->assertFalse($this->transport->islivingPlantInCart());
    }
+   public function testCanCartWithLivingPlantsBeTransportedWithCarrier(): void
+   {
 
+         $this->transport->cart = '[{
+                                "id": 1,
+                                "name": "A green door",
+                                "price": 12.5,
+                                "tags":"tools"
+                             },{
+                                "id": 1,
+                                "name": "A green door",
+                                "price": 12.5,
+                                "tags":"living plant"
+                             },
+                              {
+                                "id": 1,
+                                "name": "A green door",
+                                "price": 19.5,
+                                "tags":"seeds"
+                             }]';
+         $this->assertFalse($this->transport->canCartBeTransportedWithCarrier());
+   }
 }
 
