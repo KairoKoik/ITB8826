@@ -12,7 +12,8 @@ class Transport
    }
 
    public function isCartValidJSON(){
-         return false;
+         json_decode($this->cart);
+         return (json_last_error() == JSON_ERROR_NONE);
    }
 
 }
