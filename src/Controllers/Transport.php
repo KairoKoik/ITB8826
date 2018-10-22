@@ -11,5 +11,8 @@ class Transport
       return empty($this->cart);
    }
 
+   public function isCartValidJSON(){
+         return false;
+   }
 
 }
