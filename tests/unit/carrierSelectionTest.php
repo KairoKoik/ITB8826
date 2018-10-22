@@ -17,6 +17,18 @@ final class carrierSelectionTest extends TestCase
       $this->assertTrue($this->transport->isCartEmpty());
    }
 
+   public function testIsCartNotValidJSON (): void
+   {
+
+      $this->transport->cart = '[{
+                             "id": 1,
+                             "name": "A green door",
+                              price: 12.5,
+                             "tags":"living plant"
+                          }]';
+
+      $this->assertFalse($this->transport->isCartValidJSON());
+   }
 
 }
 
