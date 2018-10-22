@@ -5,9 +5,10 @@ namespace App\Controllers;
 
 class Transport
 {
+   public $cart;
 
    public function isCartEmpty(){
-      return true;
+      return empty($this->cart);
    }
 
 
