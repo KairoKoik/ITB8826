@@ -19,7 +19,17 @@ class Transport
          $this->cart = json_decode($this->cart);
    }
    public function islivingPlantInCart(){
-      return true;
+
+      $this->convertCartToArray();
+      $cartWithLivingPlant = false;
+      foreach ($this->cart as $key => $item) {
+         if($item->tags == "living plant"){
+            $cartWithLivingPlant = true;
+            break;
+         }
+      }
+
+      return $cartWithLivingPlant;
    }
 
 }
