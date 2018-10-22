@@ -18,5 +18,8 @@ class Transport
    public function convertCartToArray(){
          $this->cart = json_decode($this->cart);
    }
+   public function islivingPlantInCart(){
+      return true;
+   }
 
 }
