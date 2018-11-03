@@ -4,6 +4,7 @@ namespace App\Controllers;
 class Transport
 {
    public $cart;
+   public $maxParcelQuantity = 4;
 
    public function getTransportOptions(){
 
@@ -35,7 +36,9 @@ class Transport
 
       return true;
    }
-
+   
+ 
+   
    public function canCartBeTransportedWithParcel(){
 
       if($this->isCartEmpty()){
@@ -47,6 +50,10 @@ class Transport
       }
 
       if(!$this->areAllItemsAllowedInParcel()){
+         return false;
+      }
+      
+      if(!$this->isItemCountLowerThenLimit()){
          return false;
       }
 
@@ -77,7 +84,10 @@ class Transport
 
       return $cartWithLivingPlant;
    }
-
+   
+   
+  
+   
    public function areAllItemsAllowedInParcel(){
 
       $cart_array = $this->convertCartToArray();
@@ -90,6 +100,40 @@ class Transport
       }
 
       return $allItemsCanBeTransportedWithParcel;
+   }
+   
+    public function isItemCountLowerThenLimit(){
+      
+      $count_total = 0;
+      $checked = array();
+      $cart_array = $this->convertCartToArray();
+       
+      foreach ($cart_array as $key => $item) {
+         if(!in_array($item->id,$checked)){
+            $count_total += $this->countItemAmountInCart($item->id);
+            $checked{] = $item->id;
+         }         
+      }
+      
+       if($count_total <= $this->maxParcelQuantity){
+          return true;
+       } else {
+         return false
+       }
+    }
+       
+    public function countItemAmountInCart($id){
+      
+      $itemsAmountIntCart = 0;
+      $cart_array = $this->convertCartToArray();
+       foreach ($cart_array as $key => $item) {
+         if($item->id == $id){
+            $itemsAmountIntCart++;
+         }
+      }
+      
+      
+      return $itemsAmountIntCart;
    }
 
 }
